@@ -21,18 +21,21 @@ function bandsInTown() {
 // * This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal:
     var artistInput = process.argv.splice(3, process.argv.length - 1);
     var artist = artistInput.join("+");
-    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
     
     axios.get(queryURL).then(function(response) {
 
     // Printing the entire object to console
-    console.log(response);
+    // console.log(response.data[1].venue.name);
+    // var results = response.results;
+        // for (var i = 0; i < 10; i++) {
 
-    //      * Name of the venue
-
-    //      * Venue location
-
-    //      * Date of the Event (use moment to format this as "MM/DD/YYYY")
+        //      * Name of the venue
+                console.log(response.data[1].venue.name);
+        //      * Venue location
+                console.log(response.data[1].venue.city + ", " + response.data[1].venue.region);
+        //      * Date of the Event (use moment to format this as "MM/DD/YYYY")
+        // }   
     })
 }
 //SPOTIFY LIRI

@@ -1,18 +1,40 @@
-require("dotenv").config();
-var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
+// require("dotenv").config();
+// var keys = require("./keys.js");
+var axios = require("axios");
+// var spotify = new Spotify(keys.spotify);
+var command = process.argv[2];
+
+if (command === `concert-this`) {
+    bandsInTown()
+} else if (command === `spotify-this-song` ) {
+    spotify()
+} else if (command === `movie-this`) {
+    omdb()
+} else if (command === `do-what-it-says`) {
+    random()
+}
 
 
 //BANDS IN TOWN LIRI
 // `node liri.js concert-this <artist/band name here>`
+function bandsInTown() {
 // * This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal:
+    var artistInput = process.argv.splice(3, process.argv.length - 1);
+    var artist = artistInput.join("+");
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+    
+    axios.get(queryURL).then(function(response) {
 
-//      * Name of the venue
+    // Printing the entire object to console
+    console.log(response);
 
-//      * Venue location
+    //      * Name of the venue
 
-//      * Date of the Event (use moment to format this as "MM/DD/YYYY")
+    //      * Venue location
 
+    //      * Date of the Event (use moment to format this as "MM/DD/YYYY")
+    })
+}
 //SPOTIFY LIRI
 // * This will show the following information about the song in your terminal/bash window
 

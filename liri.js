@@ -1,7 +1,7 @@
 require("dotenv").config();
 var keys = require("./keys");
 var axios = require("axios");
-var moment = require('moment');
+var moment = require("moment"); 
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var fs = require("fs");
@@ -22,7 +22,7 @@ if (command === `concert-this`) {
 //BANDS IN TOWN LIRI
 // `node liri.js concert-this <artist/band name here>`
 function bandsInTown(artistInput) {
-    var artist = artistInput.split(" ").join("+");
+    var artist = artistInput.split(" ").join("+"); 
     var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
 
@@ -41,6 +41,7 @@ function bandsInTown(artistInput) {
          
     })
 }
+
 //SPOTIFY LIRI
 function spotifySong(songName) {
 
@@ -61,12 +62,12 @@ function spotifySong(songName) {
     // * The song's name
         console.log("You searched: " + song[0].name);
     // * Artist(s)
-        console.log("Artist: " + song[0].artists[0].name);
+        console.log("Artist: " + song[0] .artists[0].name);
     // * The album that the song is from
         console.log("That song is on the album titled: " + song[0].album.name);
     // * A preview link of the song from Spotify
         console.log("Preview song: " + song[0].preview_url);
-    });
+    }); 
 }
 //OMBD LIRI
 // `node liri.js movie-this '<movie name here>'`

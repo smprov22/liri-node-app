@@ -6,7 +6,7 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var fs = require("fs");
 var command = process.argv[2];
-var argument = process.argv.splice(3, process.argv.length - 1)
+var argument = process.argv.slice(3).join(" ");
 
 if (command === `concert-this`) {
     bandsInTown(argument)
@@ -22,30 +22,29 @@ if (command === `concert-this`) {
 //BANDS IN TOWN LIRI
 // `node liri.js concert-this <artist/band name here>`
 function bandsInTown(artistInput) {
-// * This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal:
-    var artist = artistInput.join("+");
-    var artistFormat = artistInput.join(" ");
+    var artist = artistInput.split(" ").join("+");
     var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+
 
     axios.get(queryURL).then(function(response) {
         // returns a console log if arist has no concerts coming up
         if (!response.data.length) {
-            console.log("No results found for " + artistFormat);
+            console.log("No results found for " + artistInput);
             return;
           }
         
         // Date of the Event (use moment to format this as "MM/DD/YYYY")
         var date = response.data[1].datetime;
         var dateFormat = moment(date).format('MMMM Do, YYYY');
-
-        console.log("The next " + artistFormat + " concert is on " + dateFormat + " at the " + response.data[0].venue.name + " in " + response.data[0].venue.city + ", " + (response.data[0].venue.region || response.data[0].venue.country) + ".");
+        // console.log(queryURL);
+        console.log("The next " + artistInput + " concert is on " + dateFormat + " at the " + response.data[0].venue.name + " in " + response.data[0].venue.city + ", " + (response.data[0].venue.region || response.data[0].venue.country) + ".");
          
     })
 }
 //SPOTIFY LIRI
-// * This will show the following information about the song in your terminal/bash window
 function spotifySong(songName) {
 
+    // * If no song is provided then your program will default to "The Sign" by Ace of Base.
     if (songName.length < 1) {
         songName = "The Sign";
         
@@ -58,8 +57,6 @@ function spotifySong(songName) {
        
         // console.log(data.tracks.items); 
         var song = data.tracks.items;
-      
-    
 
     // * The song's name
         console.log("You searched: " + song[0].name);
@@ -69,8 +66,6 @@ function spotifySong(songName) {
         console.log("That song is on the album titled: " + song[0].album.name);
     // * A preview link of the song from Spotify
         console.log("Preview song: " + song[0].preview_url);
-    
-    // * If no song is provided then your program will default to "The Sign" by Ace of Base.
     });
 }
 //OMBD LIRI
@@ -81,14 +76,10 @@ function omdb(movieName) {
         movieName = "Mr+Nobody";
       }
 
-
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
     //    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
    
-    // This line is just to help us debug against the actual URL.
-    // console.log(queryUrl);
-    //      ```
     axios.get(queryUrl).then(
         function(response) {
           // Then log the Release Year for the movie
@@ -99,8 +90,7 @@ function omdb(movieName) {
             console.log(response.data.Title + " was produced in " + response.data.Country + " and features the following languages: " + response.data.Language);
             console.log("Plot: " + response.data.Plot);
             console.log(response.data.Title + " stars: " + response.data.Actors);
-        }
-      );
+        });
 }
 
 //DO WHAT IT SAYS LIRI

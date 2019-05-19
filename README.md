@@ -2,7 +2,7 @@
 
 For this application, I created a LIRI app which takes user inputs and executes different search functions.  The first search function is "concert-this" which uses the Bands In Town API to display the next concert for any given artist.  If the artist searched doesn't have any concerts coming up the function returns "No results for 'artist'".  
 
-<img src="/Screenshots/Liri-concertthis.PNG">
+![Concert this image]/Screenshots/Liri-concertthis.PNGraw=true "Concert this image")
 
 The second search function is "movie-this" which uses the OMDB API to display various information about whatever movie is searched.  The title, release year, IMDB rating, Rotten Tomatoes rating, Country, Language, Plot and Actors are all displayed.  If the user doesn't enter a search term, the results for the movie "Mr. Nobody" are returned.
 

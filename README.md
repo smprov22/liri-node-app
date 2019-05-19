@@ -14,6 +14,6 @@ The third function is "spotify-this-song" which uses the Spotify API to display 
 
 The last function is "do-what-it-says" and this functions reads the data from "random.txt" file.  The file is structured so the first item in the file is a command, either "concert-this", "movie-this" or "spotify-this-song".  The second item in the file is whatever search term the user wants to use.  The function takes the command and runs the search term through the appropriate function, depending on what the command is. 
 
-![do-what-it-says image](/Screenshots/Liri_do-what-it-says.PNG)
+![do-what-it-says image](/Screenshots/liri_do-what-it-says.PNG)
 
 This most challenging parts of this application were getting the spotify api call to work, since we couldn't view the endpoint in the browser, and getting the do-what-it-says function to work.  I just had to dig into the JSON object and figure out where the information was that I wanted to fix the spotify problems.  For the do-what-it-says app, getting the search term to work for the concert-this function was challenging.  I had to get the formatting just right or I would get error messages.

@@ -8,7 +8,7 @@ The second search function is "movie-this" which uses the OMDB API to display va
 
 ![Movie-this image](/Screenshots/Liri_moviethis.PNG)
 
-The third function is "spotify-this-song" which uses the Spotify API to display information about whatever song is searched.  The Artist, song name, album name, and a preview link for the song on spotify are displayed.  If the user doesn't enter a search term, the results for "The Sign" by "Ace of Base" are returned.  
+The third function is "spotify-this-song" which uses the Spotify API to display information about whatever song is searched.  The Artist, song name, album name, and a preview link for the song on spotify are displayed.  If the user doesn't enter a search term, the results for "The Sign" are returned.  
 
 ![Spotify-this-song image](/Screenshots/Liri_spotifythis.PNG)
 
